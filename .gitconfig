@@ -15,8 +15,11 @@
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
 
-	# Clone a repository including all submodules
-	c = clone --recursive
+	# Commit with sign
+	c = commit -s
+
+	# Add upstream ref for current branch
+	pu = push -u origin HEAD
 
 	# Commit all changes
 	ca = !git add -A && git commit -av
