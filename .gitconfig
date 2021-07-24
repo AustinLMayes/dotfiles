@@ -15,8 +15,14 @@
 	# Pull in remote changes for the current repository and all its submodules.
 	p = pull --recurse-submodules
 
-	# Clone a repository including all submodules.
-	c = clone --recursive
+	# Clone a repository including all submodules
+	cls = clone --recursive
+
+	# Commit with sign
+	c = commit -s
+
+	# Add upstream ref for current branch
+	pu = push -u origin HEAD
 
 	# Commit all changes.
 	ca = !git add ':(exclude,attr:builtin_objectmode=160000)' && git commit -av
