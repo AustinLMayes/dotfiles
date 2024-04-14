@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+call_ruby() {
+    RES=$(echo "${@:3}" | sed 's/ /,/g')
+    # Add [] around res if it's not empty
+    if [ -n "$RES" ]; then
+        RES="[$RES]"
+    fi
+    rake -f $1 $2$RES --trace
+}
+
+alias zutils='call_ruby ~/Projects/Ruby/ZiaxUtils/zutils.rb'
+alias b2_utils='call_ruby ~/Projects/Ruby/ZiaxUtils/backblaze_utils.rb'
+alias rp_utils='call_ruby ~/Projects/Ruby/ZiaxUtils/rp_utils.rb'
+alias sutils='call_ruby ~/Projects/Ruby/GitUtils/spread_utils.rb'

@@ -35,6 +35,9 @@ fi;
 # Install `wget` with IRI support.
 brew install wget --with-iri
 
+brew install pinentry # needed for gpg
+brew install pinentry-mac # needed for gpg
+
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
 
@@ -96,6 +99,31 @@ brew install ssh-copy-id
 brew install tree
 brew install vbindiff
 brew install zopfli
+
+# Work stuff
+brew install b2-tools
+brew install gnutls
+brew install helm
+brew install mimirtool
+brew install mongosh
+
+
+# K8s
+brew install jq
+brew install kubernetes-cli
+brew install kubeseal
+brew install kustomize
+brew install openshift-cli
+
+# Ruby
+brew install ruby
+
+# Java
+brew install maven
+brew install gradle
+brew install openjdk
+brew install openjdk@11
+brew install openjdk@17
 
 # Remove outdated versions from the cellar.
 brew cleanup
