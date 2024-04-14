@@ -26,3 +26,16 @@ alias ls="command ls ${colorflag}"
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+# Remove all branches not on remote
+gp() { git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -D ; }
+
+alias gutils='GUTILS_DO_DELAY=true rake -f ~/Projects/Ruby/GitUtils/Rakefile'
+alias fgutils='GUTILS_DO_DELAY=false rake -f ~/Projects/Ruby/GitUtils/Rakefile'
+alias sgutils='GUTILS_DO_DELAY=true GUTILS_EXTRA_SLOW=true rake -f ~/Projects/Ruby/GitUtils/Rakefile'
+
+alias gdgutils='GUTILS_DO_DELAY=true rake -f ~/Projects/Ruby/GitUtils/Rakefile-GF.rb'
+alias fgdgutils='GUTILS_DO_DELAY=false rake -f ~/Projects/Ruby/GitUtils/Rakefile-GF.rb'
+alias sgdgutils='GUTILS_DO_DELAY=true GUTILS_EXTRA_SLOW=true rake -f ~/Projects/Ruby/GitUtils/Rakefile-GF.rb'
+
+alias gpc='rake -f ~/Projects/Ruby/GPC/Rakefile'

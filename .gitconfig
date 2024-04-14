@@ -66,33 +66,13 @@
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
 
-	# Push changes on a feature branch and update/push a testing branch
-	# Only argument is the name of the testing branch
-	deploy-test = "!f() { \
-		declare branch=\"$(git symbolic-ref --short HEAD)\"; \
-		git push && \
-		git go $1 && \
-		git pull && \
-		git merge $branch && \
-		git push && \
-		git go $branch; \
-	}; f"
-
 [apply]
-
-	# Detect whitespace errors when applying a patch
-	whitespace = fix
 
 [core]
 
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error
-	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
 	# Make `git rebase` safer on macOS
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
@@ -105,6 +85,7 @@
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
+	autocrlf = input
 
 [color]
 
@@ -155,13 +136,15 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	renamelimit = 2000
 
 [push]
+	default = current
 
 	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = simple
+	#default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
-	followTags = true
+	#followTags = true
 
 # URL shorthands
 
@@ -184,3 +167,22 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	email = me@austinlm.me
+	name = Austin L Mayes
+	signingkey = 686450F1D17DA5263FF623379FF70DA9911FFE88
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[gpg]
+	program = gpg
+[pull]
+	rebase = true
+
+
+[includeIf "gitdir/i:ziax*/"]
+	path = /Users/austinmayes/Projects/Java/.ziax.gitconfig
+[init]
+	defaultBranch = main

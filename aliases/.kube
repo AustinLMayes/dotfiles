@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+alias pods="kubectl get pods"
+
+function k_seal() {
+    mv $1 $1.bak
+    kubeseal --format=yaml --controller-name=sealed-secrets < $1.bak > $1
+}
